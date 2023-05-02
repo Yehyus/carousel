@@ -14,11 +14,23 @@
   transform: scale(1);
 }
 
-.carrousel__x {
+.carrousel--activer button {
   position: absolute;
-  top: 3px;
-  right: 3px;
   z-index: 3;
+}
+
+.fleche__gauche {
+  left: 0;
+  top: 35%;
+}
+
+.fleche__droite {
+  right: 0;
+  top: 35%;
+}
+
+.fermer {
+  right: 0;
 }
 
 .carrousel__figure {
@@ -36,6 +48,11 @@
   width: 100%;
   height: auto;
   opacity: 0;
+  z-index: 10;
+}
+
+.carrousel__img--activer {
+  opacity: 1;
 }
 
 .carrousel__form {
@@ -50,4 +67,4 @@
 .carrousel__rad {
   display: inline-block;
   margin: 4px;
-}/*# sourceMappingURL=style.css.map */
+}

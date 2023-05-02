@@ -26,14 +26,17 @@ function mon_enqueue_css_js(){
 
 add_action('wp_enqueue_scripts', 'mon_enqueue_css_js');
 
+
 function creation_carrousel()
 {
-    return "<button class='carrousel__ouvrir'>Ouvrir le carrousel</button>
-            <div class='carrousel'>
-                <button class='carrousel__x'>X</button>
-                <figure class='carrousel__figure'></figure>
-                <form class='carrousel__form'></form>
-            </div>";
+    return "
+    <div class='carrousel'>
+    <button class='carrousel__x fermer'>X</button>
+    <button class='fleche__gauche'>&#x3008</button>
+    <button class='fleche__droite'>&#x3009</button>    
+    <figure class='carrousel__figure'></figure>
+    <form class='carrousel__form'></form>
+    </div> <!-- fin du carrousel -->
+    ";
 }
-
 add_shortcode('carrousel', 'creation_carrousel');
