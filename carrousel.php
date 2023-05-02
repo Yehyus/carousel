@@ -18,23 +18,22 @@ function mon_enqueue_css_js(){
                      $version_css);
 
     wp_enqueue_script(  'em_plugin_carrousel_js',
-                    plugin_dir_url(__FILE__) . "js/carrousel.js",
-                    array(),
+                    plugin_dir_url(__FILE__) ."js/carrousel.js",
                     $version_js,
                     true);
+
 }
 
 add_action('wp_enqueue_scripts', 'mon_enqueue_css_js');
 
-
 function creation_carrousel()
 {
     return "<button class='carrousel__ouvrir'>Ouvrir le carrousel</button>
-    <div class='carrousel'>
-    <button class='carrousel__x'>X</button>
-    <figure class='carrousel__figure'></figure>
-    <form class='carrousel__form'></form>
-    </div> <!-- fin du carrousel -->
-    ";
+            <div class='carrousel'>
+                <button class='carrousel__x'>X</button>
+                <figure class='carrousel__figure'></figure>
+                <form class='carrousel__form'></form>
+            </div>";
 }
+
 add_shortcode('carrousel', 'creation_carrousel');
