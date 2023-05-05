@@ -8,7 +8,6 @@ window.onload = function(){
      let carrousel__form = document.querySelector(".carrousel__form")
      let fleche__gauche = document.querySelector(".fleche__gauche")
      let fleche__droite = document.querySelector(".fleche__droite")
-     let body = document.querySelector('.site')
      
      /* -------------------------------------------------------- Variable de la galerie */
      let galerie = document.querySelector(".galerie")
@@ -26,19 +25,21 @@ window.onload = function(){
      
      for (const elm of galerie__img)
      {
-      elm.dataset.index = position
-      elm.addEventListener('mousedown',function(){
-  
+        elm.dataset.index = position
+        elm.addEventListener('mousedown',function(){  
+          index = this.dataset.index
+          afficher_image(index)      
+        
         if(!carrousel.classList.contains('carrousel--activer')){
           carrousel.classList.add('carrousel--activer')
         }
-        index = this.dataset.index
-        afficher_image(index)                      
       })
   
       creation_img_carrousel(elm)
       creation_radio_carrousel()
-     }  
+     }
+
+     
   
      /* ----------------------------------------------------  fermer boîte modale */
      carrousel__x.addEventListener('mousedown', function(){
@@ -48,7 +49,6 @@ window.onload = function(){
      /* ----------------------------------------------------  changer img avec fleches */
   
      fleche__gauche.addEventListener('mousedown', function(){
-      //console.log('changer photo a gauche',index)
         if(index == 0){
           index = galerie__img.length-1
         } else { index--}
@@ -57,7 +57,6 @@ window.onload = function(){
     })
   
     fleche__droite.addEventListener('mousedown', function(){
-      //console.log('changer photo a droite',index)
         if(index == galerie__img.length-1){
           index=0
         } else{index++}       
@@ -67,18 +66,13 @@ window.onload = function(){
   
    
      function creation_img_carrousel(elm){
-  
-       //console.log(elm.getAttribute('src'))
-       let img = document.createElement('img')
-       //img.setAttribute('src', elm.getAttribute('src'))
-       img.src = elm.src
+          let img = document.createElement('img')
+       img.src = elm.src.substr(0, elm.src.length-12) + ".jpg"
        img.classList.add('carrousel__img')
-       //console.log (img.getAttribute('src'))
        carrousel__figure.appendChild(img)
        
      }
-  
-  
+
      /**
       * Création d'un radio-bouton
       */
@@ -86,7 +80,6 @@ window.onload = function(){
      function creation_radio_carrousel(){
   
      let rad = document.createElement('input')
-     //console.log(rad.tagName)
      rad.setAttribute('type', 'radio')
      rad.setAttribute('name', 'carrousel__rad')
      rad.classList.add('carrousel__rad')
@@ -99,24 +92,52 @@ window.onload = function(){
      rad.addEventListener('mousedown', function(){
       index = this.dataset.index
       afficher_image(index)
-      //console.log('index : ',this.dataset.index)
      })
      }
   
      function afficher_image(index){
   
       if(dernier__index != -1){
-        //carrousel__figure.children[dernier__index].style.opacity = 0
         carrousel__figure.children[dernier__index].classList.remove('carrousel__img--activer')
         carrousel__form.children[dernier__index].checked = false 
       } 
-      //carrousel__figure.children[this.dataset.index].style.opacity = 1
-      //console.log(index)
-     
+
+      redimensionner_carrousel()
       carrousel__figure.children[index].classList.add('carrousel__img--activer')
       carrousel__form.children[index].checked = true
       dernier__index = index
   
+     }
+
+     function redimensionner_carrousel(){
+      const windowWidth = window.innerWidth
+      const windowHeight = window.innerHeight 
+      const imageWidth = carrousel__figure.children[index].naturalWidth
+      const imageHeight = carrousel__figure.children[index].naturalHeight
+      let carrouselWidth = carrousel.offsetWidth
+      let carrouselHeight = carrousel.offsetHeight
+      carrouselWidth = windowWidth
+      
+      if(windowWidth > 1000) {
+        carrouselWidth = windowWidth - windowWidth/3
+      }
+     
+      carrouselHeight = carrouselWidth * imageHeight/imageWidth
+
+      carrousel.style.width = `${carrouselWidth}px`
+      carrousel.style.height = `${carrouselHeight}px`
+
+      carrousel.style.left = `${(windowWidth - carrouselWidth)/2}px` 
+      carrousel.style.top = `${(windowHeight - carrouselHeight)/2}px`
+
+      console.log(
+        `windowWidth= ${windowWidth}`
+        `windowHeight= ${windowHeight}`
+        `imageWidth= ${imageWidth}`
+        `imageHeight= ${imageHeight}`
+        `carrouselWidth= ${carrouselWidth}`
+        `carrouselHeight= ${carrouselHeight}`
+      )
      }
   
      /** Permet de vérifier si la classe "carrousel--activer se trrouve dans la liste des classes du carrousel"

@@ -5,13 +5,13 @@
     top : 25%;
     left : 25%;
     border: 1px solid #aaa;
-    background-color: aquamarine;
-    transform : scale(0);
+    background-color: rgb(18, 83, 21);
+    display: none;
     transition : transform .5s;
 }
 
 .carrousel--activer {
-    transform : scale(1);
+    display: block;
 }
 
 .carrousel--activer button{
@@ -50,10 +50,6 @@
     height : auto;
     opacity: 0;
     z-index: 10;
-}
-
-.carrouselEstActif{
-    
 }
 
 .carrousel__img--activer{

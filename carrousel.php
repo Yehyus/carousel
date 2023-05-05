@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin name: Carrousel Eddy
- * Author: Eddy Martin
- * Author URI: https://github.com/eddytuto
+ * Plugin name: Carrousel Yehya
+ * Author: Yehya Refaat
+ * Author URI: https://github.com/Yehyus
  * Description: Cette extension carrousel permettra d'afficher dans une boîte modale animée les images d'une galerie
  * Version: 1.0.0
  */
