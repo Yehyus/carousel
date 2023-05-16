@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin name: Carrousel Yehya
- * Author: Yehya Refaat
- * Author URI: https://github.com/Yehyus
+ * Plugin name: Carrousel Eddy
+ * Author: Eddy Martin
+ * Author URI: https://github.com/eddytuto
  * Description: Cette extension carrousel permettra d'afficher dans une boîte modale animée les images d'une galerie
  * Version: 1.0.0
  */
@@ -19,6 +19,7 @@ function mon_enqueue_css_js(){
 
     wp_enqueue_script(  'em_plugin_carrousel_js',
                     plugin_dir_url(__FILE__) ."js/carrousel.js",
+                    array(),
                     $version_js,
                     true);
 
@@ -29,11 +30,9 @@ add_action('wp_enqueue_scripts', 'mon_enqueue_css_js');
 
 function creation_carrousel()
 {
-    return "
+    return "<button class='carrousel__ouvrir'>Ouvrir le carrousel</button>
     <div class='carrousel'>
-    <button class='carrousel__x fermer'>X</button>
-    <button class='fleche__gauche'>&#x3008</button>
-    <button class='fleche__droite'>&#x3009</button>    
+    <button class='carrousel__x'>X</button>
     <figure class='carrousel__figure'></figure>
     <form class='carrousel__form'></form>
     </div> <!-- fin du carrousel -->
